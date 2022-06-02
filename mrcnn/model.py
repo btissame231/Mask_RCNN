@@ -2321,13 +2321,7 @@ class MaskRCNN():
         if layers in layer_regex.keys():
             layers = layer_regex[layers]
 
-        # Data generators
-        train_generator = data_generator(train_dataset, self.config, shuffle=True,
-                                         augmentation=augmentation,
-                                         batch_size=self.config.BATCH_SIZE,
-                                         no_augmentation_sources=no_augmentation_sources)
-        val_generator = data_generator(val_dataset, self.config, shuffle=True,
-                                       batch_size=self.config.BATCH_SIZE)
+       
 
         # Create log_dir if it does not exist
         if not os.path.exists(self.log_dir):
@@ -2359,13 +2353,13 @@ class MaskRCNN():
         else:
             workers = multiprocessing.cpu_count()
 
-        self.keras_model.fit_generator(
-            train_generator,
+        self.keras_model.fit(
+            train_dataset,
             initial_epoch=self.epoch,
             epochs=epochs,
             steps_per_epoch=self.config.STEPS_PER_EPOCH,
             callbacks=callbacks,
-            validation_data=val_generator,
+            validation_data=val_dataset,
             validation_steps=self.config.VALIDATION_STEPS,
             max_queue_size=100,
             workers=workers,
