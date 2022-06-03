@@ -2272,7 +2272,7 @@ class MaskRCNN():
         
 
     def train(self, X, y, X_val, y_val, learning_rate, epochs, layers,
-              augmentation=None, custom_callbacks=None, no_augmentation_sources=None):
+              augmentation=None, custom_callbacks=None):
         """Train the model.
         train_dataset, val_dataset: Training and validation Dataset objects.
         learning_rate: The learning rate to train with
@@ -2324,8 +2324,7 @@ class MaskRCNN():
 	# Data generators
         train_generator = data_generator(X, y, self.config, shuffle=True,
                                          augmentation=augmentation,
-                                         batch_size=self.config.BATCH_SIZE,
-                                         no_augmentation_sources=no_augmentation_sources)
+                                         batch_size=self.config.BATCH_SIZE)
         val_generator = data_generator(X_val, y_val, self.config, shuffle=True,
                                        batch_size=self.config.BATCH_SIZE)
        
