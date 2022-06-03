@@ -2322,10 +2322,10 @@ class MaskRCNN():
             layers = layer_regex[layers]
 	
 	# Data generators
-        train_generator = data_generator(X, y, self.config, shuffle=True,
+        train_generator = data_generator(X, y, self.config, shuffle=False,
                                          augmentation=augmentation,
                                          batch_size=self.config.BATCH_SIZE)
-        val_generator = data_generator(X_val, y_val, self.config, shuffle=True,
+        val_generator = data_generator(X_val, y_val, self.config, shuffle=False,
                                        batch_size=self.config.BATCH_SIZE)
        
 
