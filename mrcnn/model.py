@@ -2476,7 +2476,7 @@ class MaskRCNN():
                         self.config.BATCH_SIZE, 
                         augment=False, 
                         shuffle=False)
-       
+       val_generator = (val_generator,)
 
         # Create log_dir if it does not exist
         if not os.path.exists(self.log_dir):
