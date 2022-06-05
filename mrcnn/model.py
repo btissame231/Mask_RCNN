@@ -2408,7 +2408,7 @@ class MaskRCNN():
         self.checkpoint_path = os.path.join(self.log_dir, "mask_rcnn.h5")
         
 
-    def train(self, X, y, X_val, y_val, learning_rate, epochs, layers,
+    def train(self, train_generator, val_generator, learning_rate, epochs, layers,
               augmentation=None, custom_callbacks=None):
         """Train the model.
         train_dataset, val_dataset: Training and validation Dataset objects.
@@ -2465,18 +2465,6 @@ class MaskRCNN():
         #val_generator = data_generator(X_val, y_val, shuffle=False,
                                        #batch_size=16)
 		# Augment and shuffle training data
-        train_generator = DataGenerator(X,
-                          y,
-                          self.config.BATCH_SIZE, 
-                          augment=True, 
-                          shuffle=True)
-# Do not augment and shuffle validation data
-        val_generator = DataGenerator(X_val, 
-                        y_val, 
-                        self.config.BATCH_SIZE, 
-                        augment=False, 
-                        shuffle=False)
-        val_generator = (val_generator,)
 
         # Create log_dir if it does not exist
         if not os.path.exists(self.log_dir):
