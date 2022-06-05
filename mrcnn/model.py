@@ -2467,13 +2467,13 @@ class MaskRCNN():
 		# Augment and shuffle training data
         train_generator = DataGenerator(X,
                           y,
-                          BATCH_SIZE, 
+                          self.config.BATCH_SIZE, 
                           augment=True, 
                           shuffle=True)
 # Do not augment and shuffle validation data
         val_generator = DataGenerator(X_val, 
                         y_val, 
-                        BATCH_SIZE, 
+                        self.config.BATCH_SIZE, 
                         augment=False, 
                         shuffle=False)
        
